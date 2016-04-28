@@ -231,3 +231,10 @@ class h4 extends Containere{}
 class h5 extends Containere{}
 class h6 extends Containere{}
 class textarea extends Containere{}
+class Line
+{
+	getCode($view)
+	{
+		return '<br>';
+	}
+}
