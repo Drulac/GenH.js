@@ -1,7 +1,6 @@
 class view
 {
 	constructor(){
-		this.level = "";
 		this.html_start = 0;
 		this.head_start = 0;
 		this.body_start = 0;
@@ -14,103 +13,39 @@ class view
 		console.debug(variable);
 	}
 
-	start()
-	{
-		if (!this.html_start) {
-			var code = '<!DOCTYPE html>'+"\n"+'<html>';
-			this.html_start = 1;
-			this.levelUp();
-			return code;
-		}
-		return '';
-	}
-
-	end()
-	{
-		code = this.bodyEnd();
-		if (this.html_start) {
-			this.html_start = 0;
-			this.levelDown();
-			code += "\n"+this.level+'</html>';
-		}
-		return code;
-	}
-
-	bodyStart()
-	{
-		if (!this.body_start) {
-			code = "\n"+this.getLevel()+'<body>';
-			this.body_start = 1;
-			return code;
-		}
-		return '';
-	}
-
-	bodyEnd()
-	{
-		if (this.body_start) {
-			code = '';
-			code += "\n"+this.getLevel()+'</body>';
-			this.body_start = 0;
-			return code;
-		}
-		return '';
-	}
-
 	view(array)
 	{
 		var code = '';
 		if (gettype(array) == 'array') {
 			var i = 0;
 			var c = array.length;
-
-			this.levelUp();
 	
 			while (i < c) {
 				if (gettype(array[i]) == 'object') {
 					var add = array[i].getCode(this);
 					if(!empty(add))
-						code = code.concat("\n"+this.level+add);
+						code = code.concat(add);
 				}else if (gettype(array[i]) == 'string') {
 					add = array[i];
 					if(!empty(add))
-						code = code.concat("\n"+this.level+add);
+						code = code.concat(add);
 				}
 				i++;
 			}
-	
-			this.levelDown();
 		}else if (!empty(array) && gettype(array) == 'string'){
 			code += htmlspecialchars(array);
 		}else if (!empty(array) && gettype(array) == 'object'){
 			if (gettype(array) == 'object') {
 				add = array.getCode(this);
 				if(!empty(add))
-					code += "\n"+this.level.add;
+					code += add;
 			}else if (gettype(array) == 'string') {
 				add = array;
 				if(!empty(add))
-					code += "\n"+this.level.add;
+					code += add;
 			}
 		}
-		//this.debug(array, __LINE__);//l'entrée
-		//this.debug(code, __LINE__);//la sortie
 		return code;
-	}
-
-	levelUp()
-	{
-		this.level += "\t";
-	}
-
-	levelDown()
-	{
-		this.level = this.level.substr(0, -1);
-	}
-
-	getLevel()
-	{
-		return this.level;
 	}
 }
 
@@ -189,10 +124,9 @@ class Containere
 			}
 			code += '>';
 			if(gettype(this.content) == 'string'){
-				code += "\n"+view.getLevel()+"\t"+this.content+"\n"+view.getLevel();
+				code += this.content;
 			}else{
-				var add = view.view(this.content);
-				code += add+"\n"+view.getLevel();
+				code += view.view(this.content);
 			}
 
 			code += '</'+this.getAttribut()+'>';
