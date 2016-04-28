@@ -204,57 +204,30 @@ class Containere
 }
 
 class input extends Elemente{}
-
 class link extends Elemente{}
-
 class meta extends Elemente{}
-
 class img extends Elemente{}
-
 class script extends Containere{}
-
 class style extends Containere{}
-
 class div extends Containere{}
-
 class pre extends Containere{}
-
 class ul extends Containere{}
-
 class li extends Containere{}
-
 class header extends Containere{}
-
 class title extends Containere{}
-
 class head extends Containere{}
-
 class form extends Containere{}
-
 class button extends Containere{}
-
 class a extends Containere{}
-
 class p extends Containere{}
-
 class span extends Containere{}
-
 class strong extends Containere{}
-
 class em extends Containere{}
-
 class code extends Containere{}
-
 class h1 extends Containere{}
-
 class h2 extends Containere{}
-
 class h3 extends Containere{}
-
 class h4 extends Containere{}
-
 class h5 extends Containere{}
-
 class h6 extends Containere{}
-
 class textarea extends Containere{}
