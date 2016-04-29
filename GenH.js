@@ -52,7 +52,7 @@ class view
 //__construct(array)
 class Elemente
 {	
-	constructor (array = NULL)
+	constructor (array = null)
 	{
 		if (!empty(array))
 			this.array = array;
@@ -90,7 +90,7 @@ class Elemente
 //__construct(content, array)
 class Containere
 {
-	constructor (content = '', array = NULL)
+	constructor (content = '', array = null)
 	{
 		if (!empty(array))
 			this.array = array;
