@@ -19,31 +19,27 @@ class view
 		if (gettype(array) == 'array') {
 			var i = 0;
 			var c = array.length;
-	
+
 			while (i < c) {
 				if (gettype(array[i]) == 'object') {
 					var add = array[i].getCode(this);
-					if(!empty(add))
-						code = code.concat(add);
+					code = code.concat(add);
 				}else if (gettype(array[i]) == 'string') {
 					add = array[i];
-					if(!empty(add))
-						code = code.concat(add);
+					code = code.concat(add);
+				}else{
+					code = code.concat(array);
 				}
 				i++;
 			}
 		}else if (!empty(array) && gettype(array) == 'string'){
-			code += htmlspecialchars(array);
+			add = array;
+			code += add;
 		}else if (!empty(array) && gettype(array) == 'object'){
-			if (gettype(array) == 'object') {
-				add = array.getCode(this);
-				if(!empty(add))
-					code += add;
-			}else if (gettype(array) == 'string') {
-				add = array;
-				if(!empty(add))
-					code += add;
-			}
+			add = array.getCode(this);
+			code += add;
+		}else{
+			code += array;
 		}
 		return code;
 	}
@@ -113,26 +109,23 @@ class Containere
 	getCode(view)
 	{
 		var code = '';
-		if(!empty(this.array) || !empty(this.content)){
-			code = '<'+this.getAttribut();
-			if (!empty(this.array)) {
-				for (var cle in this.array){
-					var element = this.array[cle];
-					if (!empty(element) && !empty(cle))
-						code += ' '+cle+'="'+element+'"';
-				}
+		code = '<'+this.getAttribut();
+		if (!empty(this.array)) {
+			for (var cle in this.array){
+				var element = this.array[cle];
+				if (!empty(element) && !empty(cle))
+					code += ' '+cle+'="'+element+'"';
 			}
-			code += '>';
+		}
+		code += '>';
+		if(!empty(this.content)){
 			if(gettype(this.content) == 'string'){
 				code += this.content;
 			}else{
 				code += view.view(this.content);
 			}
-
-			code += '</'+this.getAttribut()+'>';
 		}
-		if(code == '<'+this.getAttribut()+'></'+this.getAttribut()+'>')
-			code = '';
+		code += '</'+this.getAttribut()+'>';
 		return code;
 	}
 }
@@ -154,6 +147,7 @@ class form extends Containere{}
 class button extends Containere{}
 class a extends Containere{}
 class p extends Containere{}
+class i extends Containere{}
 class span extends Containere{}
 class strong extends Containere{}
 class em extends Containere{}
