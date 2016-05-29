@@ -161,7 +161,7 @@ class h6 extends Containere{}
 class textarea extends Containere{}
 class Line
 {
-	getCode($view)
+	getCode(view)
 	{
 		return '<br>';
 	}
