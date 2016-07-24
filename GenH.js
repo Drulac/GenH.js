@@ -1,4 +1,4 @@
-class view
+class genH
 {
 	constructor(){
 		this.html_start = 0;
